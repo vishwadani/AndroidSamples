@@ -1,0 +1,60 @@
+/*
+ * Copyright (c) 2017 by Honeywell International Inc.  All rights reserved.
+ */
+def versionMajor = {
+    if (System.getenv("VERSION_MAJOR")) {
+        return Integer.parseInt(System.getenv("VERSION_MAJOR"))
+    } else {
+        return 1
+    }
+}.call()
+
+def versionMinor = {
+    if (System.getenv("VERSION_MINOR")) {
+        return Integer.parseInt(System.getenv("VERSION_MINOR"))
+    } else {
+        return 1
+    }
+}.call()
+def versionPatch = {
+    if (System.getenv("PATCH")) {
+        return Integer.parseInt(System.getenv("PATCH"))
+    } else {
+        return 1
+    }
+}.call()
+def versionBuild = {
+    if (System.getenv("BUILD_NUMBER")) {
+        return Integer.parseInt(System.getenv("BUILD_NUMBER"))
+    } else {
+        return 2
+    }
+}.call()
+def sonarKey = {
+    if (System.getenv("SONAR_KEY")) {
+        return System.getenv("SONAR_KEY")
+    } else {
+        return "com.androidsamples"
+    }
+}.call()
+def sonarName = {
+    if (System.getenv("SONAR_NAME")) {
+        return System.getenv("SONAR_NAME")
+    } else {
+        return "AndroidSample Debug"
+    }
+}.call()
+
+sonarqube {
+    properties {
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.projectName", sonarName
+        property "sonar.projectKey", sonarKey
+        property "sonar.projectVersion", versionMajor * 100000000 + versionMinor * 1000000 + versionPatch * 10000 + versionBuild
+
+        property "sonar.projectBaseDir", "."
+        property "sonar.login", "56b3063a2833466521d20465841371809fe8d44e"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.test.exclusions", "**/*Test.java"
+    }
+}
