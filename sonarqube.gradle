@@ -53,7 +53,7 @@ sonarqube {
         property "sonar.projectVersion", versionMajor * 100000000 + versionMinor * 1000000 + versionPatch * 10000 + versionBuild
 
         property "sonar.projectBaseDir", "."
-        property "sonar.login", "56b3063a2833466521d20465841371809fe8d44e"
+        property "sonar.login", "d14703f61b239a07cfc2b39741bb52e56cde8980"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.test.exclusions", "**/*Test.java"
     }
